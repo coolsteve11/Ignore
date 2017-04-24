@@ -30,6 +30,8 @@ public class uhh {
      System.out.println("the # of driving wheels must be equal for a duplex.");   
         }
      else{
+          numwheels ++;
+       startingpos = ((0*((radius*2)+.35))-numwheels*2)-radius*2;
         drawDrivingDuplex();
        drawLeading();  
        drawTrailing(); 
@@ -43,7 +45,7 @@ public class uhh {
       drawDriving();
        drawLeading();  
        drawTrailing(); 
-       drawBoiler(); 
+       drawCamelBoiler(); 
        drawCamelCab();
     }
     }
@@ -74,6 +76,11 @@ public class uhh {
     StdDraw.filledRectangle(middleofdrivingwheels+(numleading), radius+4, (radius*numwheels)+numleading, 4);    
         
     }
+    public static void drawCamelBoiler(){
+    middleofdrivingwheels /= numwheels;
+    StdDraw.filledRectangle(middleofdrivingwheels, radius+4, (radius*(numwheels)+(numleading+numtrailing)*(radius/2)), 4);    
+        
+    }
     public static void drawCab(){
     middleoftrailingwheels /= numtrailing;       
     StdDraw.filledRectangle(middleoftrailingwheels, radius+4, 4, 6);
@@ -89,7 +96,7 @@ public class uhh {
         }   
     }
     public static void drawDrivingDuplex(){
-      numwheels ++;
+     
       for (int i = 0; i < numwheels; i++) {         
           if (i == (int)(numwheels / 2.0)){
         StdDraw.setPenColor(StdDraw.WHITE); 
