@@ -18,12 +18,19 @@ public class uhh {
     }
     public static void createLoco(){
       if (type == 1){  
-        
-      drawDriving();
+      drawDriving();   
        drawLeading();  
-       drawTrailing(); 
+      if (numtrailing == 0){
+        StdDraw.setPenColor(StdDraw.WHITE);   
+        numtrailing ++;
+        drawTrailing(); 
+        StdDraw.setPenColor(StdDraw.BLACK);   
+        }
+      else{
+          drawTrailing(); 
+        } 
        drawBoiler(); 
-       drawCab(); 
+       drawCab();
     }
     if (type == 2){
      if (numwheels % 2 != 0){
@@ -34,17 +41,24 @@ public class uhh {
        startingpos = ((0*((radius*2)+.35))-numwheels*2)-radius*2;
         drawDrivingDuplex();
        drawLeading();  
-       drawTrailing(); 
+       if (numtrailing == 0){
+        StdDraw.setPenColor(StdDraw.WHITE);   
+        numtrailing ++;
+        drawTrailing(); 
+        StdDraw.setPenColor(StdDraw.BLACK);   
+        }
+      else{
+          drawTrailing(); 
+        }  
        drawBoiler(); 
        drawCab();
-        
         }          
     }
     if (type == 3){
         
       drawDriving();
        drawLeading();  
-       drawTrailing(); 
+      drawTrailing();  
        drawCamelBoiler(); 
        drawCamelCab();
     }
@@ -70,6 +84,7 @@ public class uhh {
        numtrailing = sc.nextDouble();
        System.out.println("Type?  1 = standard, 2 = mallet/duplex, 3 = camel");
        type = sc.nextDouble();    
+       
     }
     public static void drawBoiler(){
     middleofdrivingwheels /= numwheels;
@@ -81,6 +96,7 @@ public class uhh {
     StdDraw.filledRectangle(middleofdrivingwheels, radius+4, (radius*(numwheels)+(numleading+numtrailing)*(radius/2)), 4);    
         
     }
+    
     public static void drawCab(){
     middleoftrailingwheels /= numtrailing;       
     StdDraw.filledRectangle(middleoftrailingwheels, radius+4, 4, 6);
@@ -117,7 +133,7 @@ public class uhh {
                StdDraw.filledCircle((finaldrivingpos+(i*((radius))))+.35, -radius/2, radius/2);  
         }
     }
-     public static void drawTrailing(){
+     public static void drawTrailing(){         
         for (int i = 0; i < numtrailing; i++) {            
                StdDraw.filledCircle(startingpos-(i*((radius)))-.35, -radius/2, radius/2);
                middleoftrailingwheels += (startingpos-(i*((radius)))-.35);
